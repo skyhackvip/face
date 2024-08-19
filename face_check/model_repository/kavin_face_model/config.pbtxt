@@ -1,0 +1,33 @@
+name: "kavin_face_model"
+platform: "onnxruntime_onnx"
+max_batch_size: 1
+input [
+  {
+    name: "input"
+    data_type: TYPE_FP32
+    dims: [3, -1, -1]
+  }
+]
+output [
+  {
+    name: "loc"
+    data_type: TYPE_FP32
+    dims: [-1, 4]
+  },
+  {
+    name: "conf"
+    data_type: TYPE_FP32
+    dims: [-1, 2]
+  },
+  {
+    name: "landms"
+    data_type: TYPE_FP32
+    dims: [-1, 10]
+  }
+]
+instance_group [
+  {
+    count: 1
+    kind: KIND_CPU
+  }
+]
